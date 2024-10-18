@@ -21,8 +21,6 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
                 userId: data.id,
             })
             .then((data) => {
-                // TODO: remove below comment
-                console.log(data);
                 router.push(`/conversations/${data.data.id}`);
             })
             .finally(() => setIsLoading(false));

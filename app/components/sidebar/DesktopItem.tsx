@@ -17,7 +17,6 @@ const DesktopItem = ({
     active,
 }: DesktopItemProps) => {
     const handleClick = () => {
-        console.log(onClick)
         if (onClick) {
             return onClick();
         }
