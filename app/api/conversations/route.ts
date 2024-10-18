@@ -26,7 +26,7 @@ export async function POST(request: Request) {
                     users: {
                         connect: [
                             ...members.map((member: { value: string }) => ({
-                                id: member.value,
+                                id: member.value, 
                             })),
                             {
                                 id: currentUser.id,
