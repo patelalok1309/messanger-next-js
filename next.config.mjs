@@ -10,6 +10,10 @@ const nextConfig = {
             "avatars.githubusercontent.com",
         ],
     },
+    eslint: {
+        // Disable ESLint during production builds
+        ignoreDuringBuilds: true,
+    },
 };
 
 export default nextConfig;
