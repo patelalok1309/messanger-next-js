@@ -9,6 +9,9 @@ export async function POST(request: Request) {
 
         const { userId, isGroup, members, name } = body;
 
+        console.log("[currentUser id]", currentUser?.id);
+        console.log("[currentUser email]", currentUser?.email);
+
         if (!currentUser?.id || !currentUser?.email) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
