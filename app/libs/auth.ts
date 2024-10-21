@@ -51,7 +51,7 @@ export const authOptions: AuthOptions = {
             },
         }),
     ],
-    debug: process.env.NODE_ENV === "development",
+    debug: process.env.NODE_ENV === "production",
     session: {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60, // Example: 30 days
