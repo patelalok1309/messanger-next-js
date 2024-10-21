@@ -17,6 +17,7 @@ import MobileItem from "./MobileItem";
         <div className="fixed justify-between w-full bottom-0 z-40 flex items-center bg-white border-t=[1px] lg:hidden">
             {routes.map((route) => (
                 <MobileItem
+                    label={route.label}
                     key={route.href}
                     href={route.href}
                     active={route.active}
