@@ -1,6 +1,5 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import db from "@/app/libs/prismadb";
-import Users from "@/app/users/page";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

@@ -38,7 +38,7 @@ export async function POST(request: Request) {
             },
         });
 
-        const updateConversation = await db.conversation.update({
+        const updatedConversation = await db.conversation.update({
             where: {
                 id: conversationId,
             },
