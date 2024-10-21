@@ -6,7 +6,6 @@ const getCurrentUser = async () => {
     try {
         const session = await getSession();
 
-        console.log("session", session);
 
         if (!session?.user?.email) {
             return null;
@@ -21,7 +20,6 @@ const getCurrentUser = async () => {
         if (!currentUser) {
             return null;
         }
-        console.log("currentUser", currentUser);
 
         return currentUser;
     } catch (error: any) {
