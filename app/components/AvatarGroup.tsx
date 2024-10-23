@@ -28,6 +28,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({ users = [] }) => {
                     <Image
                         alt="Avatar"
                         fill
+                        sizes="100%"
                         src={user?.image || "/images/placeholder.jpg"}
                     />
                 </div>

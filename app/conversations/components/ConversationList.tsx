@@ -51,22 +51,18 @@ const ConversationList: React.FC<ConversationListProps> = ({
         };
 
         const updateHandler = (conversation: FullConversationType) => {
-            console.log("[CONVERSATION] " , conversation)
-
-            console.log("[ITEMS BEFORE] " , items)
-            setItems((current) =>
-                current.map((currentConversation) => {
+            setItems((current) => {
+                const updatedItems = current.map((currentConversation) => {
                     if (currentConversation.id === conversation.id) {
                         return {
                             ...currentConversation,
-                            messages: conversation.messages,
+                            messages: [...conversation.messages], // Ensure new array for messages
                         };
                     }
-                    
                     return currentConversation;
-                })
-            );
-            console.log("[ITEMS AFTER] " , items)
+                });
+                return [...updatedItems]; // Ensure new array for items
+            });
         };
 
         const removeHandler = (conversation: FullConversationType) => {
@@ -92,6 +88,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
             pusherClient.unbind("conversation:remove", removeHandler);
         };
     }, [pusherKey, conversationId, router]);
+
     return (
         <>
             <GroupChatModal

@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json(updatedUser);
     } catch (error: any) {
-        console.log("[SETTINGS_ERROR]", error);
+        console.log("[ERROR_SETTINGS]", error);
         return NextResponse.json("Internal server error ! while setting up", {
             status: 500,
         });
