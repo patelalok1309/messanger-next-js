@@ -9,7 +9,7 @@ const useConversation = () => {
             return "";
         }
         return params?.conversationId;
-    }, [params.conversationId]);
+    }, [params?.conversationId]);
 
     // Here double exclamation marks convert strings into boolean
     const isOpen = useMemo(() => !!conversationId, [conversationId]);
