@@ -13,6 +13,11 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 
         const { conversationId } = params;
 
+        if (!conversationId) {
+            return NextResponse.json("Conversation ID is required", { status: 400 });
+        }
+
+
         if (!currentUser?.id || !currentUser?.email) {
             return NextResponse.json("Unauthorized", { status: 401 });
         }
