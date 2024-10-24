@@ -6,7 +6,6 @@ import Select from "@/app/components/inputs/Select";
 import Modal from "@/app/components/Modal";
 import { User } from "@prisma/client";
 import axios from "axios";
-import { Group } from "next/dist/shared/lib/router/utils/route-regex";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";

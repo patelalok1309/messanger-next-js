@@ -1,5 +1,6 @@
 "use client";
 
+import { CSSProperties } from "react";
 import ReactSelect from "react-select";
 
 interface SelectProps {
@@ -8,6 +9,7 @@ interface SelectProps {
     onChange: (value: Record<string, any>) => void;
     options: Record<string, any>[];
     disabled?: boolean;
+    styles?: CSSProperties;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -16,9 +18,10 @@ const Select: React.FC<SelectProps> = ({
     onChange,
     options,
     disabled,
+    styles,
 }) => {
     return (
-        <div className="z-[100]">
+        <div className="z-[100]" style={styles}>
             <label
                 className="block text-sm font-medium leading-6 text-gray-900"
                 htmlFor="GroupChat"
