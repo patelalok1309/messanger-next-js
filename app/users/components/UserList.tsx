@@ -2,12 +2,16 @@
 
 import { User } from "@prisma/client";
 import UserBox from "./UserBox";
+import { useState } from "react";
+import SearchUserBox from "./SearchUserBox";
 
 interface UserListProps {
     items: User[];
 }
 
 const UserList: React.FC<UserListProps> = ({ items }) => {
+    const [filteredItems, setFilteredItems] = useState(items);
+
     return (
         <aside className="fixed inset-y-0 pb-20 lg:pb-20 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-200 block w-full left-0">
             <div className="px-5">
@@ -17,7 +21,14 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
                     </div>
                 </div>
 
-                {items.map((item) => (
+                <div className="mt-2 p-2">
+                    <SearchUserBox
+                        items={items}
+                        setFilteredItems={setFilteredItems}
+                    />
+                </div>
+
+                {filteredItems.map((item) => (
                     <UserBox key={item.id} data={item} />
                 ))}
             </div>
