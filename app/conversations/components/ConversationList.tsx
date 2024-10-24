@@ -5,12 +5,13 @@ import { User } from "@prisma/client";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { MdOutlineGroup } from "react-icons/md";
+import { MdOutlineGroup, MdSearch } from "react-icons/md";
 import ConversationBox from "./ConversationBox";
 import GroupChatModal from "./GroupChatModal";
 import { useSession } from "next-auth/react";
 import { pusherClient } from "@/app/libs/pusher";
 import { find } from "lodash";
+import SearchBox from "./SearchBox";
 
 interface ConversationListProps {
     initialItems: FullConversationType[];
@@ -23,6 +24,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
 }) => {
     const session = useSession();
     const [items, setItems] = useState(initialItems);
+    const [filteredItems, setFilteredItems] = useState(initialItems);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const router = useRouter();
@@ -115,7 +117,14 @@ const ConversationList: React.FC<ConversationListProps> = ({
                         </div>
                     </div>
 
-                    {items.map((item) => (
+                    <div className="mt-2 p-2">
+                        <SearchBox
+                            items={items}
+                            setFilteredItems={setFilteredItems}
+                        />
+                    </div>
+
+                    {filteredItems.map((item) => (
                         <ConversationBox
                             key={item.id}
                             data={item}
