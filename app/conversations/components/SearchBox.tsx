@@ -20,9 +20,18 @@ const SearchBox: React.FC<SearchBoxProps> = ({ items, setFilteredItems }) => {
             setFilteredItems(items);
             return;
         }
+
         const filtered = items.filter((item) =>
-            item.users.some((user) =>
-                user.name?.toLowerCase().includes(searchInput.toLowerCase())
+            item.users.some(
+                (user) =>
+                    user.name
+                        ?.toLowerCase()
+                        .includes(searchInput.toLowerCase()) ||
+                    (item.isGroup
+                        ? item.name
+                              ?.toLowerCase()
+                              .includes(searchInput.toLowerCase())
+                        : false)
             )
         );
 

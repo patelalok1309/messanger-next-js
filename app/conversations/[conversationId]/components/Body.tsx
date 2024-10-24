@@ -57,18 +57,39 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
             );
         };
 
+        const messageDeleteHandler = (deletedMessage: any) => {
+            setMessages((currentMessages) =>
+                currentMessages.filter(
+                    (message) => message.id !== deletedMessage
+                )
+            );
+        };
+
+        const singleMessageDeleteHandler= (deletedMessage : any) => {
+            console.log("deletedMessage" , deletedMessage)
+            setMessages((currentMessages) =>
+                currentMessages.filter(
+                    (message) => message.id !== deletedMessage.messageId
+                )
+            );
+        }
+
         pusherClient.bind("messages:new", messageHandler);
         pusherClient.bind("message:update", updateMessageHandler);
+        pusherClient.bind("messages:delete", messageDeleteHandler);
+        pusherClient.bind("message:delete" , singleMessageDeleteHandler);
 
         return () => {
             pusherClient.unsubscribe(id);
             pusherClient.unbind("messages:new", messageHandler);
             pusherClient.unbind("message:update", updateMessageHandler);
+            pusherClient.unbind("messages:delete", messageDeleteHandler);
+            pusherClient.bind("message:delete" , singleMessageDeleteHandler);
         };
     }, [conversationId]);
 
     return (
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden">
             {messages.map((message, i) => (
                 <MessageBox
                     isLast={i === messages.length - 1}
