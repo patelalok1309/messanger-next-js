@@ -1,10 +1,10 @@
 "use client";
 
 import ContextMenu from "@/app/components/ContextMenu";
-import { pusherClient } from "@/app/libs/pusher";
 import { FullMessageType } from "@/app/types";
 import axios from "axios";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 interface MessageContextMenuProps {
     isOpen?: boolean;
@@ -31,6 +31,10 @@ const MessageContextMenu: React.FC<MessageContextMenuProps> = ({
         console.log("selected", selected.value);
         if (selected.value === "delete") {
             handleDeleteMessage();
+            toast.success("Message deleted");
+        } else if (selected.value === "copy") {
+            navigator.clipboard.writeText(data.body!);
+            toast.success("Message copied");
         }
         onClose();
     };
